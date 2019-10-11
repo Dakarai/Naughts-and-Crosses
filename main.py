@@ -3,15 +3,17 @@
 # board is to be printed out after each move
 # accept input of player position and place symbol on board
 
+
 def main():
     play_game = True
 
     while play_game:
         marks = determine_marks()
         print(marks)
-        play_game = False
 
-    # player 1 will go first.
+        # player 1 will go first.
+        print("Player 1 will go first.")
+        ready()
 
     # ready?
     # print board
@@ -36,6 +38,17 @@ def determine_marks():
         return {"p1": "X", "p2": "O"}
     else:
         return {"p1": "O", "p2": "X"}
+
+
+def ready():
+    rdy = False
+    valid_answer = False
+    while not rdy:
+        while not valid_answer:
+            response = input("Are you ready to play? ")
+            valid_answer = check_inputs(["Y", "N"], response[0].capitalize())
+        rdy = response[0].capitalize() == "Y"
+        valid_answer = False
 
 
 def check_inputs(acceptable, my_s):
