@@ -12,7 +12,6 @@ def main():
 
     while play_game:
         marks = determine_marks()
-        print(marks)
 
         # player 1 will go first.
         print("Player 1 will go first.")
