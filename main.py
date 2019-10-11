@@ -5,6 +5,7 @@
 # board is to be printed out after each move
 # accept input of player position and place symbol on board
 # after game is over, ask to play again
+import random
 
 
 def main():
@@ -13,8 +14,8 @@ def main():
     while play_game:
         marks = determine_marks()
 
-        # player 1 will go first.
-        print("Player 1 will go first.")
+        current_player = next_player()
+        print("{} will go first.".format(current_player))
 
         # ready?
         ready()
@@ -27,7 +28,6 @@ def main():
         # print board
         game_over = False
         board_state = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-        current_player = "Player 2"
         while not game_over:
             current_player = next_player(current_player)
             draw_board(board_state)
@@ -69,8 +69,10 @@ def ready():
         valid_answer = False
 
 
-def next_player(current_player):
-    if current_player == "Player 1":
+def next_player(current_player="None"):
+    if current_player == "None":
+        return random.choice(["Player 1", "Player 2"])
+    elif current_player == "Player 1":
         return "Player 2"
     else:
         return "Player 1"
