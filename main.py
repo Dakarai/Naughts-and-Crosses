@@ -3,12 +3,13 @@
 # board is to be printed out after each move
 # accept input of player position and place symbol on board
 
-
 def main():
     play_game = True
 
     while play_game:
-        determine_marks()
+        marks = determine_marks()
+        print(marks)
+        play_game = False
 
     # player 1 will go first.
 
@@ -28,4 +29,19 @@ def determine_marks():
     # ask player 1 if X or O
     valid_answer = False
     while not valid_answer:
-        p1_s = input("Player 1: Would you like X or O? ")
+        p1_string = input("Player 1: Would you like X or O? ")
+        p1_mark = p1_string[0].capitalize()
+        valid_answer = check_inputs(["X", "O"], p1_mark)
+    if p1_mark == 'X':
+        return {"p1": "X", "p2": "O"}
+    else:
+        return {"p1": "O", "p2": "X"}
+
+
+def check_inputs(acceptable, my_s):
+    if my_s not in acceptable:
+        print("Invalid response. Please enter {}".format(acceptable))
+    return my_s in acceptable
+
+
+main()
