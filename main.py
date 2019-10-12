@@ -46,6 +46,12 @@ def main():
 
 
 def determine_marks():
+    """
+    Determines X and O for each player.
+
+    Returns:
+         dict: {"Player 1": mark, "Player 2": mark}
+    """
     # ask player 1 if X or O
     valid_answer = False
     while not valid_answer:
@@ -59,6 +65,10 @@ def determine_marks():
 
 
 def ready():
+    """
+    Keeps player in routine until they confirm they are ready.
+    No output.
+    """
     rdy = False
     valid_answer = False
     while not rdy:
@@ -70,6 +80,11 @@ def ready():
 
 
 def next_player(current_player="None"):
+    """
+    Determines the next player. Chooses a random player if current_player is not passed.
+    :param current_player: "Player 1" or "Player 2". Null to return random previous string.
+    :return: "Player 1" or "Player 2"
+    """
     if current_player == "None":
         return random.choice(["Player 1", "Player 2"])
     elif current_player == "Player 1":
@@ -79,6 +94,11 @@ def next_player(current_player="None"):
 
 
 def draw_board(board_state):
+    """
+    Draws the current board through the board_state list
+    :param board_state: 9-length list with current marks.
+    :return: no output
+    """
     print(" {} | {} | {} ".format(board_state[6], board_state[7], board_state[8]))
     print("-----------")
     print(" {} | {} | {} ".format(board_state[3], board_state[4], board_state[5]))
