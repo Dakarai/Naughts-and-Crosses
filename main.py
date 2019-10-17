@@ -107,6 +107,13 @@ def draw_board(board_state):
 
 
 def receive_play(current_player, marks, board_state):
+    """
+    Receives an input from the current player and places it on the board after checking input validity.
+    :param current_player: "Player 1" or "Player 2"
+    :param marks: "X" or "X"
+    :param board_state: list item with indices 0-8 corresponding to their board position
+    :return: board_state after placing turn's mark.
+    """
     valid_answer = False
     while not valid_answer:
         current_play = input(
@@ -119,6 +126,11 @@ def receive_play(current_player, marks, board_state):
 
 
 def filter_occupied(board_state):
+    """
+    Given a board_state, return which positions are empty
+    :param board_state: list item with indices 0-8 corresponding to their board position
+    :return: list item containing open positions. [] if no open positions
+    """
     my_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
     for i in range(0, 9):
         if board_state[i] != " ":
@@ -127,6 +139,11 @@ def filter_occupied(board_state):
 
 
 def check_winner(board_state):
+    """
+    Given a board state, determine if someone has won with three identical marks in a row
+    :param board_state: list item with indices 0-8 corresponding to their board position
+    :return: True if game has been won, False otherwise
+    """
     if board_state[0] == board_state[1] == board_state[2] and board_state[0] != " ":
         return True
     elif board_state[0] == board_state[4] == board_state[8] and board_state[0] != " ":
@@ -148,6 +165,10 @@ def check_winner(board_state):
 
 
 def play_again():
+    """
+    Prompts the player to play another game.
+    :return: True for another game, False to end.
+    """
     valid_answer = False
     while not valid_answer:
         response = input("Would you like to play again? ")
@@ -156,6 +177,12 @@ def play_again():
 
 
 def check_inputs(acceptable, my_s):
+    """
+    Does the input provided by a user match the acceptable options they can choose from?
+    :param acceptable: list item containing valid responses
+    :param my_s: string item containing player input
+    :return: True if user input a valid response, False otherwise.
+    """
     if my_s not in acceptable:
         print("Invalid response. Please enter {}".format(acceptable))
     return my_s in acceptable
